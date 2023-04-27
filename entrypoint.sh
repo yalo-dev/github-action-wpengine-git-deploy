@@ -6,16 +6,20 @@ set -e
 : ${WPENGINE_SSH_KEY_PRIVATE?Required secret not set.}
 : ${WPENGINE_SSH_KEY_PUBLIC?Required secret not set.}
 
+echo "Setting up environment"
 SSH_PATH="$HOME/.ssh"
-WPENGINE_HOST="git.wpengine.com"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
+
+WPENGINE_HOST="git.wpengine.com"
 WPENGINE_SSH_KEY_PRIVATE_PATH="$SSH_PATH/wpengine_key"
 WPENGINE_SSH_KEY_PUBLIC_PATH="$SSH_PATH/wpengine_key.pub"
 WPENGINE_ENVIRONMENT_DEFAULT="production"
 WPENGINE_ENV=${WPENGINE_ENVIRONMENT:-$WPENGINE_ENVIRONMENT_DEFAULT}
+
 LOCAL_BRANCH_DEFAULT="master"
 BRANCH=${LOCAL_BRANCH:-$LOCAL_BRANCH_DEFAULT}
 
+echo "Setting up SSH keys"
 mkdir "$SSH_PATH"
 
 ssh-keyscan -t rsa "$WPENGINE_HOST" >> "$KNOWN_HOSTS_PATH"
