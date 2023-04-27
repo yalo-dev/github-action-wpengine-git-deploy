@@ -19,6 +19,11 @@ WPENGINE_ENV=${WPENGINE_ENVIRONMENT:-$WPENGINE_ENVIRONMENT_DEFAULT}
 LOCAL_BRANCH_DEFAULT="master"
 BRANCH=${LOCAL_BRANCH:-$LOCAL_BRANCH_DEFAULT}
 
+echo "Setting up git"
+git config --global --add safe.directory /github/workspace
+git config --global user.email "actions@github.com"
+git config --global user.name "Github"
+
 echo "Setting up SSH keys"
 mkdir "$SSH_PATH"
 
